@@ -149,7 +149,7 @@ const postRepository = {
 // Resolver for the `Post.body` field:
 function Post_body(source, args, context, info) {
   // return the post body only if the user is the post's author
-  return postRepository.getBody({ user: context.user, post: obj })
+  return postRepository.getBody({ user: context.user, post: source })
 }
 ```
 
@@ -234,6 +234,13 @@ GraphQL.js allows you to hook into the execution pipeline using:
 - `execute`: Trace the overall operation
 - `parse` and `validate`: Trace early steps
 - `formatResponse`: Attach metadata
+
+Starting in v17, GraphQL.js also publishes lifecycle events on Node.js
+`node:diagnostics_channel` tracing channels for parse, validation, execution,
+subscription setup, variable coercion, root selection set execution, and field
+resolution. These channels are mainly for application performance monitoring
+(APM) tools and other tracing integrations, which can subscribe to the
+`graphql:*` channels without changing application request code.
 
 Tracing tools that work with GraphQL include:
 

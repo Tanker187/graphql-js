@@ -1029,6 +1029,7 @@ input Hello {
         {
           kind: 'DirectiveDefinition',
           description: undefined,
+          directives: [],
           name: {
             kind: 'Name',
             value: 'foo',
@@ -1065,6 +1066,7 @@ input Hello {
         {
           kind: 'DirectiveDefinition',
           description: undefined,
+          directives: [],
           name: {
             kind: 'Name',
             value: 'foo',
@@ -1088,6 +1090,13 @@ input Hello {
         },
       ],
       loc: { start: 0, end: 47 },
+    });
+  });
+
+  it('Directive definition extensions require the experimental flag', () => {
+    expectToThrowJSON(() => parse('extend directive @foo @bar')).to.deep.equal({
+      message: 'Syntax Error: Unexpected Name "directive".',
+      locations: [{ line: 1, column: 8 }],
     });
   });
 

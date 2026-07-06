@@ -1,3 +1,10 @@
+/**
+ * Parse, print, and visit GraphQL language source files and AST nodes.
+ *
+ * These exports are also available from the root `graphql` package.
+ * @packageDocumentation
+ */
+
 export { Source } from './source';
 
 export { getLocation } from './location';
@@ -96,6 +103,7 @@ export type {
   UnionTypeExtensionNode,
   EnumTypeExtensionNode,
   InputObjectTypeExtensionNode,
+  DirectiveExtensionNode,
   // Schema Coordinates
   SchemaCoordinateNode,
   TypeCoordinateNode,
